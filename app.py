@@ -45,6 +45,21 @@ if choice == "Profile":
 
 if choice == "ML":
     st.write("You chose ML")
+   
+    # Add a select box for choosing between regression and classification
+    ml_task = st.selectbox("Choose ML task", ["Regression", "Classification"])
+    
+    target = st.selectbox("What is the target column", df.columns)
+    
+    if st.button("Train Model"):
+        # Configure PyCaret's setup based on the ML task
+        if ml_task == "Classification":
+            setup(df, target=target, silent=True, html=False, session_id=123)
+            best_model = compare_models()
+        elif ml_task == "Regression":
+            setup(df, target=target, silent=True, html=False, session_id=123, task="regression")
+            best_model = compare_models()
+
     target = st.selectbox("What is the target column", df.columns)
     if st.button("train model"):
         setup(df, target = target)
