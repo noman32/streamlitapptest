@@ -38,7 +38,7 @@ if choice == "Upload":
 
 if choice == "Profile":
     st.title("Automated EDA")
-    profile_report = pandas_profiling.ProfileReport(df)
+    profile_report = ydata_profiling.ProfileReport(df)
     st_profile_report(profile_report)
 
 
