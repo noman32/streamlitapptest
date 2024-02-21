@@ -4,7 +4,7 @@ import pandas as pd
 import  os
 #noman
 # profiling libraries
-import ydata_profiling
+
 from streamlit_pandas_profiling import st_profile_report
 from ydata_profiling import ProfileReport
 
@@ -38,8 +38,8 @@ if choice == "Upload":
 
 if choice == "Profile":
     st.title("Automated EDA")
-    profile_report = ydata_profiling.ProfileReport(df)
-    st_profile_report(profile_report)
+    profile = ProfileReport(df, title="Profiling Report")
+    st_profile_report(profile)
 
 
 

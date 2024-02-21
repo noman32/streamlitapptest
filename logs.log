@@ -30,3 +30,35 @@ https://github.com/ydataai/ydata-profiling/issues
 (include the error message: 'Function <code object pandas_auto_compute at 0x7f46a2352cc0, file "/home/vscode/.local/lib/python3.11/site-packages/ydata_profiling/model/pandas/correlations_pandas.py", line 164>')
   warnings.warn(
 
+2024-02-21 11:30:49,924:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:30:49,924:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:30:49,925:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:30:49,925:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:48:15,341:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:48:15,342:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:48:15,342:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:48:15,342:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-02-21 11:48:41,047:WARNING:/home/vscode/.local/lib/python3.11/site-packages/ydata_profiling/model/correlations.py:66: UserWarning: There was an attempt to calculate the auto correlation, but this failed.
+To hide this warning, disable the calculation
+(using `df.profile_report(correlations={"auto": {"calculate": False}})`
+If this is problematic for your use case, please report this as an issue:
+https://github.com/ydataai/ydata-profiling/issues
+(include the error message: 'Function <code object pandas_auto_compute at 0x7f26363d4110, file "/home/vscode/.local/lib/python3.11/site-packages/ydata_profiling/model/pandas/correlations_pandas.py", line 164>')
+  warnings.warn(
+
+2024-02-21 11:49:08,585:WARNING:/home/vscode/.local/lib/python3.11/site-packages/ydata_profiling/model/correlations.py:66: UserWarning: There was an attempt to calculate the auto correlation, but this failed.
+To hide this warning, disable the calculation
+(using `df.profile_report(correlations={"auto": {"calculate": False}})`
+If this is problematic for your use case, please report this as an issue:
+https://github.com/ydataai/ydata-profiling/issues
+(include the error message: 'Function <code object pandas_auto_compute at 0x7f26363d4110, file "/home/vscode/.local/lib/python3.11/site-packages/ydata_profiling/model/pandas/correlations_pandas.py", line 164>')
+  warnings.warn(
+
