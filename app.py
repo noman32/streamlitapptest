@@ -13,7 +13,7 @@ from pycaret.classification import setup, compare_models, pull, create_model, tu
 
 
 st.write("Hello World")
-
+'''
 with st.sidebar:
     #st.image("https://static.streamlit.io/examples/cat.jpg")
     st.write("This is a sidebar")
@@ -66,3 +66,4 @@ if choice == "Download":
         st.download_button("Download the model", f, "trained_model.pkl")
 
     
+'''
