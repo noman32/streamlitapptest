@@ -1,3 +1,6 @@
 altair
 pandas
 streamlit
+pandas-profiling
+streamlit
+streamlit-pandas-profiling
