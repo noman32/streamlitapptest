@@ -63,13 +63,13 @@ if choice == "ML":
         
         if st.button("Train Model"):
             if ml_task == "Classification":
-                setup_class(data=df, target=target, log_experiment=True, experiment_name="classification_experiment")
+                setup_class(data=df, target=target)
                 best_model = compare_models_class()
                 compare_df = pull_class()
                 st.info("Comparison is complete")
                 st.dataframe(compare_df)
             elif ml_task == "Regression":
-                setup_reg(data=df, target=target, log_experiment=True, experiment_name="regression_experiment")
+                setup_reg(data=df, target=target)
                 best_model = compare_models_reg()
                 compare_df = pull_reg()
                 st.info("Comparison is complete")
