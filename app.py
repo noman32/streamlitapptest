@@ -9,8 +9,8 @@ from streamlit_pandas_profiling import st_profile_report
 from ydata_profiling import ProfileReport
 # noman
 # ML libraries
-from pycaret.classification import setup, compare_models, pull, create_model, tune_model, finalize_model, predict_model, save_model, load_model
-
+from pycaret.classification import setup as setup_class, compare_models as compare_models_class, create_model as create_model_class, save_model as save_model_class,pull as  pull_class
+from pycaret.regression import setup as setup_reg, compare_models as compare_models_reg, create_model as create_model_reg, save_model as save_model_reg, pull as pull_reg
 
 st.write("Hello World")
 
@@ -18,8 +18,12 @@ with st.sidebar:
     #st.image("https://static.streamlit.io/examples/cat.jpg")
     st.write("This is a sidebar")
     st.title("This is a sidebar title")
-    choice = st.radio("What is your favorite animal", ["Upload", "Profile", "ML", "Download"])
+    choice = st.radio("What do you like to do: ", ["Upload", "Profile", "ML", "Download"])
     st.write(choice)
+
+# Ensure df is defined
+if "df" not in globals():
+    df = pd.DataFrame()
 
 if os.path.exists("sourcedata.csv"):
     df = pd.read_csv("sourcedata.csv")
@@ -38,46 +42,60 @@ if choice == "Upload":
 
 if choice == "Profile":
     st.title("Automated EDA")
-    profile = ProfileReport(df, title="Profiling Report")
-    st_profile_report(profile)
-
+    if 'df' in locals():
+        profile = ProfileReport(df, title="Profiling Report")
+        st_profile_report(profile)
+    else:
+        st.write("No data available for profiling.")
 
 
 if choice == "ML":
     st.write("You chose ML")
-   
-    # Add a select box for choosing between regression and classification
-    ml_task = st.selectbox("Choose ML task", ["Regression", "Classification"])
-    
-    target = st.selectbox("What is the target column", df.columns)
-    
-    if st.button("Train Model"):
-        # Configure PyCaret's setup based on the ML task
-        if ml_task == "Classification":
-            setup(df, target=target, silent=True, html=False, session_id=123)
-            best_model = compare_models()
-        elif ml_task == "Regression":
-            setup(df, target=target, silent=True, html=False, session_id=123, task="regression")
-            best_model = compare_models()
+    if 'df' in locals():
+        # Check for missing values in the target column
+        target = st.selectbox("What is the target column", df.columns)
+        missing_values_count = df[target].isnull().sum()
+        if missing_values_count > 0:
+            st.error(f"There were {missing_values_count} missing values in {target}. Rows with missing values are discarded.")
+            df = df.dropna(subset=[target])
+        
+        ml_task = st.selectbox("Choose ML task", ["Regression", "Classification"])
+        
+        if st.button("Train Model"):
+            if ml_task == "Classification":
+                setup_class(data=df, target=target, log_experiment=True, experiment_name="classification_experiment")
+                best_model = compare_models_class()
+                compare_df = pull_class()
+                st.info("Comparison is complete")
+                st.dataframe(compare_df)
+            elif ml_task == "Regression":
+                setup_reg(data=df, target=target, log_experiment=True, experiment_name="regression_experiment")
+                best_model = compare_models_reg()
+                compare_df = pull_reg()
+                st.info("Comparison is complete")
+                st.dataframe(compare_df)
 
-    target = st.selectbox("What is the target column", df.columns)
-    if st.button("train model"):
-        setup(df, target = target)
-        setup_df = pull()
-        st.info("Setup is complete")
-        st.dataframe(setup_df)
-        best_model = compare_models()
-        compare_df = pull()
-        st.info("Comparison is complete")
-        st.dataframe(compare_df)
-        best_model = create_model(best_model)
-        save_model(best_model, "best_model")
 
+            st.write(f"Best Model: {best_model}")
+            if ml_task == "Classification":
+                save_model_class(best_model, "best_model_classification")
+             
+            elif ml_task == "Regression":
+                save_model_reg(best_model, "best_model_regression")
+                
+
+
+    else:
+        st.write("No data available for ML.")
 
 
 if choice == "Download":
     st.write("You chose download")
-    with open("best_model.pkl", "rb") as f:
-        st.download_button("Download the model", f, "trained_model.pkl")
+    model_file = st.selectbox("Choose model to download", ["best_model_classification.pkl", "best_model_regression.pkl"])
+    if st.button("Download Model"):
+        with open(model_file, "rb") as f:
+            st.download_button("Download the model", f, model_file)
+
+
 
     
