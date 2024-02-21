@@ -7,13 +7,13 @@ import  os
 
 from streamlit_pandas_profiling import st_profile_report
 from ydata_profiling import ProfileReport
-
+# noman
 # ML libraries
 from pycaret.classification import setup, compare_models, pull, create_model, tune_model, finalize_model, predict_model, save_model, load_model
 
 
 st.write("Hello World")
-
+'''
 with st.sidebar:
     #st.image("https://static.streamlit.io/examples/cat.jpg")
     st.write("This is a sidebar")
@@ -66,3 +66,4 @@ if choice == "Download":
         st.download_button("Download the model", f, "trained_model.pkl")
 
     
+'''
