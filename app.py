@@ -12,7 +12,7 @@ from ydata_profiling import ProfileReport
 from pycaret.classification import setup as setup_class, compare_models as compare_models_class, create_model as create_model_class, save_model as save_model_class,pull as  pull_class
 from pycaret.regression import setup as setup_reg, compare_models as compare_models_reg, create_model as create_model_reg, save_model as save_model_reg, pull as pull_reg
 
-st.write("Hello World")
+st.write("Hello World This is a test streamlit app")
 
 with st.sidebar:
     #st.image("https://static.streamlit.io/examples/cat.jpg")
