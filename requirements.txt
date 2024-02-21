@@ -4,3 +4,4 @@ streamlit
 ydata-profiling
 streamlit
 streamlit-pandas-profiling
+pycaret
